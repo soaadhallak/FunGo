@@ -35,6 +35,8 @@ class SaleResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\Section::make('Sale In formation')
+                ->schema([
                 Forms\Components\Textarea::make('title')
                     ->required(),           
                 Forms\Components\DateTimePicker::make('date_start')
@@ -49,7 +51,9 @@ class SaleResource extends Resource
                 ->relationship(name:'place',titleAttribute:'name')
                 ->searchable()
                 ->native(false)
+                ->preload()
                 ->required(),
+                ])
             ]);
     }
 

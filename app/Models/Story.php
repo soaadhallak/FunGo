@@ -10,6 +10,13 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Story extends Model implements HasMedia
 {
     use HasFactory,InteractsWithMedia;
+
+     protected $fillable=[
+        'user_id',
+        'place_id',
+        'txt',
+    ];
+    
     public function user(){
         return $this->belongsTo(User::class);
     }

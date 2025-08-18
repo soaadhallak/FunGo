@@ -60,6 +60,21 @@ return [
             'report' => false,
         ],
 
+        
+        'places'=>[
+            'driver'=>'local',
+            'root'=>storage_path('app/public/places'),
+            'url'=>env('APP_URL').'/storage/places',
+            'visibility'=>'public',
+        ],
+
+        'stories'=>[
+            'driver'=>'local',
+            'root'=>storage_path('app/public/stories'),
+            'url'=>env('APP_URL').'/storage/stories',
+            'visibility'=>'public',
+        ]
+
     ],
 
     /*

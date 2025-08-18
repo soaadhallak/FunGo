@@ -7,8 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
-       use HasFactory;
-
+    use HasFactory;
+    protected $fillable=[
+        'comment',
+        'rating',
+        'place_id',
+        'activity_type_id',
+        'user_id',
+    ];
 
 
     public function place(){

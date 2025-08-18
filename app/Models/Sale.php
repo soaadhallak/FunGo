@@ -14,6 +14,7 @@ class Sale extends Model
         'date_start',
         'place_id'
     ];
+    
     public function place(){
         return $this->belongsTo(Place::class);
     }

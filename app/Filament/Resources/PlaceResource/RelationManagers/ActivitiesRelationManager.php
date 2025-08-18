@@ -6,6 +6,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
+use Filament\Tables\Actions\AttachAction;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -21,6 +22,12 @@ class ActivitiesRelationManager extends RelationManager
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
+                    Forms\Components\TextInput::make('min_price')
+                    ->required()
+                    ->numeric(),
+                    Forms\Components\TextInput::make('max_price')
+                    ->required()
+                    ->numeric(),
             ]);
     }
 
@@ -31,28 +38,41 @@ class ActivitiesRelationManager extends RelationManager
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('min_price'),
-                 Tables\Columns\TextColumn::make('max_price'),
+                Tables\Columns\TextColumn::make('max_price')
             ])
             ->filters([
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                Tables\Actions\AttachAction::make()
+                  ->form(fn (AttachAction $action): array => [
+                 $action->getRecordSelect(),
+                Forms\Components\TextInput::make('min_price')
+                ->numeric()
+                ->required(),
+                Forms\Components\TextInput::make('max_price')
+                ->numeric()
+                ->required(),
+    ]),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+               Tables\Actions\DetachAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
+               /* Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                ]),*/
             ]);
     }
 
-    public function isReadOnly(): bool
-    {
-        return false;
-    }
+   protected function getAttachedNotification(): ?\Filament\Notifications\Notification
+{
+    return null;
 }
 
+protected function getDetachedNotification(): ?\Filament\Notifications\Notification
+{
+    return null;
+}
+}

@@ -112,7 +112,7 @@ class ActivityTypeResource extends Resource
         return [
             'index' => Pages\ListActivityTypes::route('/'),
             'create' => Pages\CreateActivityType::route('/create'),
-            //'view'=>Pages\ViewActivityType::route('/{record}'),
+            'view'=>Pages\ViewActivityType::route('/{record}'),
             'edit' => Pages\EditActivityType::route('/{record}/edit'),
     
         ];

@@ -4,6 +4,7 @@ namespace App\Filament\Resources\ActivityTypeResource\Pages;
 
 use App\Filament\Resources\ActivityTypeResource;
 use Filament\Actions;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
 
 class EditActivityType extends EditRecord
@@ -15,5 +16,9 @@ class EditActivityType extends EditRecord
         return [
             Actions\DeleteAction::make(),
         ];
+    }
+    protected function getSavedNotification(): ?Notification
+    {
+        return null;
     }
 }

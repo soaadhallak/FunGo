@@ -33,6 +33,8 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\Section::make('User Information')
+                ->schema([
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
@@ -44,6 +46,11 @@ class UserResource extends Resource
                     ->password()
                     ->required()
                     ->maxLength(255),
+                Forms\Components\Select::make('roles')
+                ->multiple()
+                ->relationship('roles', 'name') 
+                ->preload()   
+                ])
             ]);
     }
 

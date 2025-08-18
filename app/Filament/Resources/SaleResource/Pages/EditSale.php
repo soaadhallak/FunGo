@@ -4,6 +4,7 @@ namespace App\Filament\Resources\SaleResource\Pages;
 
 use App\Filament\Resources\SaleResource;
 use Filament\Actions;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
 
 class EditSale extends EditRecord
@@ -15,5 +16,10 @@ class EditSale extends EditRecord
         return [
             Actions\DeleteAction::make(),
         ];
+    }
+
+    protected function getSavedNotification(): ?Notification
+    {
+        return null;
     }
 }

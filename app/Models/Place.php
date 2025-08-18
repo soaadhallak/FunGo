@@ -23,7 +23,7 @@ class Place extends Model implements HasMedia
     public function trips(){
         return $this->belongsToMany(Trip::class,'trip_place');
     }
-    public function activities(){
+   public function activities(){
         return $this->belongsToMany(ActivityType::class,'place_activity')->withPivot('min_price','max_price')->withTimestamps();
     }
     public function sales(){
@@ -37,6 +37,13 @@ class Place extends Model implements HasMedia
     }
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('places');
+        $this->addMediaCollection('places')->useDisk('places');
+    }
+
+    public function activitiesData(){
+        return $this->hasMany(PlaceActivity::class);
+    }
+    public function favoritedBy(){
+        return $this->belongsToMany(User::class,'favorite_places')->withTimestamps();
     }
 }
