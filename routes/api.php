@@ -17,7 +17,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 //route for place controller
-Route::prefix('/places')->group(function(){
+Route::prefix('/places')->middleware('auth:sanctum')->group(function(){
 
     Route::get('index',[PlaceController::class,'index']);
 
@@ -32,7 +32,7 @@ Route::prefix('/places')->group(function(){
   });
     
     //route to register device token
-    Route::post('/device-token',DeviceTokenController::class);
+    Route::post('/device-token',DeviceTokenController::class)->middleware('auth:sanctum');
 
     //route for trip
     Route::prefix('/trips')->middleware('auth:sanctum')->group(function(){

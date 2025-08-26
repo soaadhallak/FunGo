@@ -62,16 +62,40 @@ class PlaceResource extends Resource
                  Select::make('governorate')
                 ->label('المحافظة')
                 ->options([
-                    'damascus' => 'دمشق',
-                    'aleppo'   => 'حلب',
-                    // باقي المحافظات
+                    'damascus'   => 'دمشق',
+                    'aleppo'     => 'حلب',
+                    'homs'       => 'حمص',
+                    'hama'       => 'حماة',
+                    'latakia'    => 'اللاذقية',
+                    'tartous'    => 'طرطوس',
+                    'banias'     => 'بانياس',
+                    'idlib'      => 'إدلب',
+                    'deraa'      => 'درعا',
+                    'sweida'     => 'السويداء',
+                    'raqqa'      => 'الرقة',
+                    'deir_ezzor' => 'دير الزور',
+                    'hasakah'    => 'الحسكة',
+                    'qamisli'    => 'القامشلي',
+                    'palmyra'    => 'تدمر',
                 ])
                 ->reactive()
                 ->afterStateUpdated(function (Set $set, $state, $livewire) {
                     $coordinates = [
-                        'damascus' => ['lat' => 33.5138, 'lng' => 36.2765],
-                        'aleppo'   => ['lat' => 36.2021, 'lng' => 37.1343],
-                        // باقي المحافظات
+                        'damascus'   => ['lat' => 33.5138, 'lng' => 36.2765],
+                        'aleppo'     => ['lat' => 36.2021, 'lng' => 37.1343],
+                        'homs'       => ['lat' => 34.7306, 'lng' => 36.7090],
+                        'hama'       => ['lat' => 35.1318, 'lng' => 36.7578],
+                        'latakia'    => ['lat' => 35.5310, 'lng' => 35.7900],
+                        'tartus'     => ['lat' => 34.8890, 'lng' => 35.8866],
+                        'idlib'      => ['lat' => 35.9306, 'lng' => 36.6339],
+                        'raqqa'      => ['lat' => 35.9500, 'lng' => 39.0167],
+                        'deir_ezzor' => ['lat' => 35.3333, 'lng' => 40.1500],
+                        'daraa'      => ['lat' => 32.6189, 'lng' => 36.1021],
+                        'sweida'     => ['lat' => 32.7086, 'lng' => 36.5665],
+                        'hasakah'    => ['lat' => 36.4833, 'lng' => 40.7500],
+                        'qamisli'    => ['lat' => 37.0522, 'lng' => 41.2220],
+                        'palmyra'    => ['lat' => 34.5609, 'lng' => 38.2766],
+                        'banias'     => ['lat' => 35.1819, 'lng' => 35.9487],
                     ];
 
                     if (isset($coordinates[$state])) {
