@@ -14,11 +14,13 @@ class ActivityInPlaceResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $priceAverage=($this->pivot->min_price + $this->pivot->max_price) / 2;
        return[
             'id'=>$this->id,
             'name'=>$this->name,
             'minPrice'=>$this->pivot->min_price,
             'maxPrice'=>$this->pivot->max_price,
+            'priceAverage'=>$priceAverage,
         ];
     }
 }

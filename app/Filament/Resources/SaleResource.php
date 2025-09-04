@@ -38,7 +38,9 @@ class SaleResource extends Resource
                 Forms\Components\Section::make('Sale In formation')
                 ->schema([
                 Forms\Components\Textarea::make('title')
-                    ->required(),           
+                    ->required(), 
+                Forms\Components\Textarea::make('body')
+                    ->required(),               
                 Forms\Components\DateTimePicker::make('date_start')
                     ->required()
                     ->native(false)
@@ -64,6 +66,9 @@ class SaleResource extends Resource
                 Tables\Columns\TextColumn::make('title')
                     ->sortable()
                     ->searchable(),
+                Tables\Columns\TextColumn::make('body')
+                    ->sortable()
+                    ->searchable(),    
                 Tables\Columns\TextColumn::make('date_start')
                     ->dateTime()
                     ->sortable(),
@@ -129,6 +134,7 @@ class SaleResource extends Resource
                 Section::make('Sale Information')
                 ->schema([
                 TextEntry::make('title')->label('Title'),
+                TextEntry::make('body')->label('Body'),
                 TextEntry::make('date_start')->label('Start'),
                 TextEntry::make('date_end')->label('End'),
                 TextEntry::make('place.name')->label('Place Name')

@@ -13,7 +13,7 @@ class FavoriteController extends Controller
 {
     public function index(){
         $user=auth()->user();
-        $favorites=$user->favoritePlaces()->with(['media'])->latest()->get();
+        $favorites=$user->favoritePlaces()->with(['media','reviews'])->latest()->get();
         return ApiResponse::getResponse(FavouritesResource::collection($favorites),200,'المفضلة');
     }
 

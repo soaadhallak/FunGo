@@ -26,5 +26,6 @@ class CreatePlace extends CreateRecord
         event(new PlaceCreated($place,$title,$body,$data));
     }
     
+  
 
 }

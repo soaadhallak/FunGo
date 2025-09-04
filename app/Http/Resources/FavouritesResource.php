@@ -19,6 +19,7 @@ class FavouritesResource extends JsonResource
             'name'=>$this->name,
             'image'=>$this->whenLoaded('media',fn()=>$this->getFirstMediaUrl('places')),
             'address'=>$this->address,
+            'reviewAvarge'=>$this->whenLoaded('reviews',fn()=>round($this->reviews->avg('rating'),1)),
         ];
     }
 }

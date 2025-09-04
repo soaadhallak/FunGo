@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\V1\StoreNewTripRequest;
 use App\Helpers\ApiResponse;
 use App\Http\Requests\V1\GetTripForUserRequest;
-use APP\Http\Resources\TripPlaceResource;
+use App\Http\Resources\TripForPlaceResource;
 use App\Models\Place;
 use App\Models\Trip;
 
@@ -45,7 +45,7 @@ class TripController extends Controller
      selectRaw('ST_Distance_Sphere(POINT(longitude,latitude),POINT(?,?)) as distance',[$lng,$lat])
      ->orderBy('distance')->with('media')->get();
 
-     return ApiResponse::getResponse(TripPlaceResource::collection($places),200,"Places in your trip ordered by distance.");
+     return ApiResponse::getResponse(TripForPlaceResource::collection($places),200,"Places in your trip ordered by distance.");
    }
 
    public function destroy(Trip $trip){

@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TripPlaceResource extends JsonResource
+class ActivityTypesResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,11 +15,8 @@ class TripPlaceResource extends JsonResource
     public function toArray(Request $request): array
     {
         return[
-            'id' => $this->id,
-            'name' => $this->name,
-            'image' => $this->getFirstMediaUrl('places'),
-            'distance_in_meters' => round($this->distance),
+            'id'=>$this->id,
+            'name'=>$this->name,
         ];
-        
     }
 }

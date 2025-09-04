@@ -32,9 +32,9 @@ class ReviewController extends Controller
     {
         Gate::authorize('delete',$review);
         $review->delete();
-        return ApiResponse::getResponse(null,204,'تم حذف التقييم');
+        return ApiResponse::getResponse(null,200,'تم حذف التقييم');
     }
-
+    /*
     public function getAllReviewsForPlace(Place $place){
 
         $reviews=$place->reviews()->with(['user','activityType'])->latest()->get();
@@ -42,5 +42,5 @@ class ReviewController extends Controller
             return ApiResponse::getResponse(null,404,'لا يوجد تقييمات بعد');
         }
         return ApiResponse::getResponse(ReviewResource::collection($reviews),200);
-    }
+    }*/
 }

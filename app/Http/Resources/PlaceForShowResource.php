@@ -25,7 +25,7 @@ class PlaceForShowResource extends JsonResource
                 ];
             }),
             'activites'=>ActivityInPlaceResource::collection($this->whenLoaded('activities')),
-            'reviewsCount'=>$this->whenLoaded('reviews',fn()=>$this->reviews->count()),
+            //'reviewsCount'=>$this->whenLoaded('reviews',fn()=>$this->reviews->count()),
             'reviewAvarge'=>$this->whenLoaded('reviews',fn()=>round($this->reviews->avg('rating'),1)),
             'stories'=>$this->whenLoaded('stories',fn()=>$this->stories->map(function($story){
                 return[
@@ -33,6 +33,7 @@ class PlaceForShowResource extends JsonResource
                     'txt'=>$story->txt,
                     'image'=>$story->getMedia('stories')->map(fn ($media) => $media->getUrl()),
                     'user_name'=>$story->user->name,
+                    'createdAt'=>$story->created_at,
                 ];
             })),
         ];

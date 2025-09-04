@@ -23,10 +23,8 @@ class StoreReviewRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'comment'=>['sometimes','string','min:3','max:256'],
             'rating'=>['required','integer','between:1,5'],
             'place_id'=>['required','exists:places,id'],
-            'activity_type_id'=>['required','exists:activity_types,id']
         ];
     }
      protected function prepareForValidation()

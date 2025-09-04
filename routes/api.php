@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityTypeController;
 use App\Http\Controllers\V1\DeviceTokenController;
 use App\Http\Controllers\V1\FavoriteController;
 use App\Http\Controllers\V1\UserController;
@@ -34,6 +35,7 @@ Route::prefix('/places')->middleware('auth:sanctum')->group(function(){
     //route to register device token
     Route::post('/device-token',DeviceTokenController::class)->middleware('auth:sanctum');
 
+
     //route for trip
     Route::prefix('/trips')->middleware('auth:sanctum')->group(function(){
 
@@ -46,7 +48,7 @@ Route::prefix('/places')->middleware('auth:sanctum')->group(function(){
     Route::delete('my-trip/{trip}',[TripController::class,'destroy']);
     });
 
-    Route::prefix('/story')->middleware(['auth:sanctum','permission:manage story'])->group(function(){
+    Route::prefix('/story')->middleware(['auth:sanctum'])->group(function(){
 
         Route::post('store',[StoryController::class,'store']);
         Route::delete('{story}/destroy',[StoryController::class,'destroy']);
@@ -63,10 +65,12 @@ Route::prefix('/places')->middleware('auth:sanctum')->group(function(){
         Route::post('store',[ReviewController::class,'store']);
         Route::delete('{review}/delete',[ReviewController::class,'destroy']);
         Route::post('{review}/update',[ReviewController::class,'update']);
-        Route::get('{place}/getAll',[ReviewController::class,'getAllReviewsForPlace']);
+        //Route::get('{place}/getAll',[ReviewController::class,'getAllReviewsForPlace']);
     });
     Route::prefix('/favorites')->middleware(['auth:sanctum'])->group(function(){
         Route::get('index',[FavoriteController::class,'index']);
         Route::post('{place}/store',[FavoriteController::class,'store']);
         Route::delete('{place}/delete',[FavoriteController::class,'destroy']);
     });
+
+     Route::get('/activity-type',ActivityTypeController::class)->middleware('auth:sanctum');
