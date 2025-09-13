@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 
 class PlacesFilter
 {
-     protected $request;
+    protected $request;
     protected $places;
 
     public function __construct(Request $request)
@@ -25,7 +25,7 @@ class PlacesFilter
 
         $placesCollection = $this->places->get();
 
-        // تطبيق فلترة "offers" في الذاكرة
+       
         if ($this->request->filled('filters')) {
             $filters = explode(',', $this->request->filters);
 
@@ -33,7 +33,7 @@ class PlacesFilter
                 $placesCollection = $placesCollection->filter(fn($place) => $place->sales->isNotEmpty());
             }
 
-            // ترتيب تدريجي حسب الفلاتر
+           
             foreach ($filters as $filter) {
                 switch ($filter) {
                     case 'nearest':
@@ -57,12 +57,12 @@ class PlacesFilter
                         $placesCollection = $placesCollection->sortByDesc('avg_rating');
                         break;
 
-                    // يمكن تضيفي فلاتر أخرى حسب الحاجة
+                    
                 }
             }
         }
 
-        return $placesCollection->values(); // ترتيب جديد مع إعادة الفهارس
+        return $placesCollection->values();
     }
 
     protected function applyFilters()
@@ -84,7 +84,7 @@ class PlacesFilter
                 $query->whereHas('activities', fn($q) => $q->where('activity_type_id', $activityId));
             });
 
-        // إذا في فلتر nearest أضف حساب المسافة في الاستعلام
+        
         if ($request->filled('filters')) {
             $filters = explode(',', $request->filters);
             if (in_array('nearest', $filters) && $request->latitude && $request->longitude) {
@@ -99,7 +99,7 @@ class PlacesFilter
             }
         }
     }
-    // دالة لحساب المسافة بين نقطتين (بدون DB)
+   
     protected function distance($lat1, $lon1, $lat2, $lon2)
     {
         $theta = $lon1 - $lon2;
